@@ -1,0 +1,29 @@
+<div id="view-content">
+    <h3>Numery</h3>
+    <a href="index.php?action=new_issue&step=1" class="new">Nowy</a>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr><th>L.P.</th><th>Numer</th><th>Okładka</th><th>Statusy</th><th>Akcje</th></tr>
+        <?php $i = 1; foreach ($this->issues as $row): ?>
+        <tr><td><?php echo $i.'</td><td>'.$row['number'].'('.$row['cover'].')/'.$row['year'].'</td><td><img src="/covers/'.$row['cover'].'_3.jpg"></td><td>Archiwum:&nbsp;';
+        if ($row['archive']==1){
+	echo '<strong><img src="/ico/ok.png" class="mime">Tak</strong><br><a href="javascript:void(0)" class="dearchive" onclick="if (confirm(\'Czy na pewno wyjąć ten numer z archiwum? \\nPamiętaj, że numer aktualnie aktywny zostanie zarchiwizowany!\')){window.location=\'/console/issues/archive/?archive=0&id='.$row['id'].'\'}">Ustaw jako najnowszy</a><br>';
+        }
+        else{
+	echo '<strong><img src="/ico/no.png" class="mime">Nie</strong><br><a href="javascript:void(0)" class="archive" onclick="if (confirm(\'Czy na pewno zarchiwizować ten numer? \')){window.location=\'/console/issues/archive/?archive=1&id='.$row['id'].'\'}">Przenieś do archiwum</a><br>';
+        }
+        echo '<br>Publikacja:&nbsp;';
+        if ($row['active']==1){
+	echo '<strong><img src="/ico/ok.png" class="mime">Tak</strong><br><a href="javascript:void(0)" class="deactivate" onclick="if (confirm(\'Czy na pewno anulować publikację? \\nPamiętaj, że numer przestanie być widoczny na stronie głównej!\')){window.location=\'/console/issues/activate/?active=0&id='.$row['id'].'\'}">Anuluj publikację</a><br>';
+        }
+        else{
+	echo '<strong><img src="/ico/no.png" class="mime">Nie</strong><br><a href="javascript:void(0)" class="activate" onclick="if (confirm(\'Czy na pewno opublikować ten numer? \\nPamiętaj, że numer opublikowany będzie widoczny na stronie głównej wraz z artykułami do niego przypisanymi! \')){window.location=\'/console/issues/activate/?active=1&id='.$row['id'].'\'}">Opublikuj</a><br>';
+        }
+        echo '</td><td><a href="index.php?action=list_articles&issue='.$row['ordinal_no'].'" class="list">Zawartość numeru</a><br>
+	    <a href="index.php?action=edit_issue&id='.$row['ordinal_no'].'" class="edit">Edytuj właściwości</a><br>
+	    <a href="index.php?action=list_news&issue='.$row['ordinal_no'].'" class="list">Edytuj zajawki</a>
+	    </td></tr>';
+        $i++;
+    ?>
+    <?php endforeach; ?>
+    </table>';
+</div>

@@ -66,10 +66,12 @@ class Console_BanersController extends Zend_Controller_Action
 	     ->setValue('img')
 	     ->setAttrib('onclick','javascript:type_change()')
 	     ->setDecorators($decorator);
-	$img1->setLabel('Baner graficzny')
+	$img1->setDestination('/var/www/zagroda/public/baners/img/')
+	     ->setLabel('Baner graficzny')
 	     ->setDecorators($fileDecorator);
 	$swf1->setLabel('Baner flash')
-	     ->setDecorators($fileDecorator);
+	     ->setDecorators($fileDecorator)
+	     ->setDestination('/var/www/zagroda/public/baners/swf');
 	$html->setlabel('Baner HTML')
 	     ->setDecorators($decorator);
 	$url->setLabel('Url')
@@ -134,16 +136,125 @@ class Console_BanersController extends Zend_Controller_Action
 
     public function saveAction()
     {
-        $form['name'] = $this->getRequest()->getPost('name');
-	$form['position'] = $this->getRequest()->getPost('position');
-	$form['type'] = $this->getRequest()->getPost('type');
-	$img = $this->getRequest()->getPost('img');
-	$form['img'] = (isset($img))?$this->getRequest()->getPost('img'):'';
 	
+	$banerObj = new Console_Model_DbTable_Baners();
+
+        $data = array('name' => $this->getRequest()->getPost('name'),
+		      'position' => $this->getRequest()->getPost('position'),
+		      'type' => $this->getRequest()->getPost('type'),
+		      'img' => '',
+		      'swf' => '',
+		      'html' => '',
+		      'url' => $this->getRequest()->getPost('url'),
+		      'active' => $this->getRequest()->getPost('active'),
+		      'date_from' => $this->getRequest()->getPost('date_from'),
+		      'date_to' => $this->getRequest()->getPost('date_to'));
+
+	$img = $this->form->getValue('img1');
+	if (isset($img)){
+	    $data['img'] = $img;
+	}
+
+	$swf = $this->form->getValue('swf1');
+	if (isset($swf)){
+	    $data['swf'] = $swf;
+	}
+
+	$html = $this->getRequest()->getPost('html');
+	if (isset($html)){
+	    $data['html'] = $html;
+	}
+
+	$banerObj->insertNew($data);
+	header('Location:/console/baners/');
+    }
+
+    public function activateAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+	$active = $this->getRequest()->getParam('active');
+
+	if(isset($id) && isset($active)){
+	    $banerObj = new Console_Model_DbTable_Baners();
+
+	    $data = array('active' => $active);
+	    $banerObj->updateBaner($data,$id);
+
+	    header('Location: /console/baners');
+	}
+    }
+
+    public function deleteAction()
+    {
+        $id = $this->getRequest()->getparam('id');
+
+	$banerObj = new Console_Model_DbTable_Baners();
+
+	$baner = $banerObj->getBaner($id);
+	if ($baner['type'] == 'img' || $baner['type'] == 'swf') unlink('/var/www/zagroda/public/baners/'.$baner['type'].'/'.$baner[$baner['type']]);
+	$banerObj->deleteBaner($id);
+	header('Location: /console/baners/');
+    }
+
+    public function editAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+	$save = $this->getRequest()->getParam('save');
+	$banerObj = new Console_Model_DbTable_Baners();
+	$form = $this->form;
+
+	if (isset($save) && $save = 1){
+	    $data = array(
+		    'name'      => $this->getRequest()->getPost('name'),
+		    'position'  => $this->getRequest()->getPost('position'),
+		    'url'       => $this->getRequest()->getPost('url'),
+		    'active'    => $this->getRequest()->getPost('active'),
+		    'date_from' => $this->getRequest()->getPost('date_from'),
+		    'date_to'   => $this->getRequest()->getPost('date_to'),
+		    'html'      => 'test');
+
+	    $html = $this->getRequest()->getPost('html');
+	    if (isset($html))
+		$data['html'] = $html;
+
+	    $banerObj->updateBaner($data,$id);
+	    header('Location:/console/baners/');
+
+	}else{
+	    $baner = $banerObj->getBaner($id);
+
+	    $form->getElement('name')->setValue($baner['name']);
+	    $form->getElement('position')->setValue($baner['position']);
+	    $form->getElement('type')->setValue($baner['type'])
+				     ->setAttrib('disabled','true');
+	    $form->getElement('url')->setValue($baner['url']);
+	    $form->getElement('active')->setValue($baner['active']);
+	    $form->getElement('date_from')->setValue($baner['date_from']);
+	    $form->getElement('date_to')->setValue($baner['date_to']);
+
+	    $form->removeElement('img1');
+	    $form->removeElement('swf1');
+
+	    if($baner['type'] == 'img' || $baner['type'] == 'swf'){
+		$form->removeElement('html');
+	    }else{
+		$form->getElement('html')->setValue($baner['html']);
+	    }
+
+	    $form->setAction('/console/baners/edit/?save=1&id='.$id);
+
+	    $this->view->form = $form;
+	}
     }
 
 
 }
+
+
+
+
+
+
 
 
 

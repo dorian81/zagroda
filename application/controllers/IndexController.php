@@ -47,6 +47,7 @@ class IndexController extends Zend_Controller_Action
 		//Banery
 		
 		$this->view->baners = $this->leftBaners->getLeftBaners();
+		$this->view->topBaner = $this->leftBaners->getTopBaner();
 
 		//Bloczek współpracy
 		

@@ -1,0 +1,29 @@
+<?php
+    $this->headScript()->appendFile('/js/ckeditor/ckeditor.js');
+    $this->headScript()->appendFile('/js/JSCal2-1.9/src/js/jscal2.js');
+    $this->headScript()->appendFile('/js/JSCal2-1.9/src/js/lang/pl.js');
+    $this->headLink()->appendStylesheet('/js/JSCal2-1.9/src/css/jscal2.css');
+?>
+<div id="view-content">
+    <h3>W najnowszym numerze (<?php echo $this->issue; ?>)</h3>
+    <input type="button" value="Zakończ" onclick="javascript:document.location='/console/issues/'">
+    <?php echo $this->form; ?>
+    <script type = "text/javascript">
+	CKEDITOR.replace("edit1",{
+	    skin:"v2",
+	    filebrowserImageUploadUrl : 'ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+	});
+	CKEDITOR.on('instanceReady',type_change);
+    </script>
+    <table border="1" cellspacing="0">
+	<tr><th>L.P.</th><th>Tytuł</th><th>Strona</th><th>Akcje</th></tr>
+	<?php
+	    $i = 1;
+	    foreach ($this->news as $news){
+		echo '<tr><td>'.$i.'</td><td>'.$news['h1'].'</td><td>'.$news['page'].'</td><td><a href="/console/news/edit/?id='.$news['id'].'&issue='.$news['issue'].'" class="edit">Edytuj</a>';
+		echo '<a href="javascript:void(0);" class="delete" onclick="if (confirm(\'Czy na pewno usunąć ten wpis?\')){window.location=\'/console/news/delete/?id='.$news['id'].'&issue='.$news['issue'].'\'}">Usuń</a>';
+		echo '</td></tr>';
+		$i++;
+	    }
+	?>
+</div>

@@ -9,21 +9,22 @@
 	echo '</td><td>';
 	switch ($row['type']){
 	    case'html':{
-	    echo '<img src="ico/globe_link.png" class="mime">HTML';
+	    echo '<img src="/ico/globe_link.png" class="mime">HTML';
 	    break;
 	    }
 	    case'img':{
-	    echo '<img src="ico/mime_jpg.png" class="mime">Obraz';
+	    echo '<img src="/ico/mime_jpg.png" class="mime">Obraz';
 	    break;
 	    }
 	    case'swf':{
-	    echo '<img src="ico/mime_swf.png" class="mime">Flash';
+	    echo '<img src="/ico/mime_swf.png" class="mime">Flash';
 	    break;
 	    }
 	}
 	echo'</td><td><img class="mime" src="/ico/';
-	echo ($row['active']==1)?'ok.png">Tak</td><td><a href="baners.php?action=deactivate&id='.$row['id'].'" class="deactivate">Dezaktywuj</a>':'no.png">Nie</td><td><a href="baners.php?action=activate&id='.$row['id'].'" class="activate">Aktywuj</a>';
-	echo '&nbsp;<a href="index.php?action=edit_baner&id='.$row['id'].'" class="edit">Edytuj</a>&nbsp;<a href="baners.php?action=delete&id='.$row['id'].'" class="delete">Usuń</a></td></tr>';
-        endforeach;?>
+	echo ($row['active']==1)?'ok.png">Tak</td><td><a href="/console/baners/activate/?active=0&id='.$row['id'].'" class="deactivate">Dezaktywuj</a>':'no.png">Nie</td><td><a href="/console/baners/activate/?active=1&id='.$row['id'].'" class="activate">Aktywuj</a>';
+	echo '&nbsp;<a href="/console/baners/edit/?id='.$row['id'].'" class="edit">Edytuj</a>&nbsp;<a href="/console/baners/delete/?id='.$row['id'].'" class="delete">Usuń</a></td></tr>';
+        $i++;
+	endforeach;?>
     </table>
 </div>

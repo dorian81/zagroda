@@ -1,4 +1,3 @@
-<br /><br />
 <div id="view-content">
     <center>
         <h3>Filtry</h3>
@@ -18,7 +17,7 @@
 	<input type="submit" value="Filtruj"><br>
         </form>
     <?php foreach ($this->letters as $letter): ?>
-        <a href="/console/index/coop/?filter=1&letter=<?php echo $letter.'">'.$letter; ?></a>&nbsp;
+        <a href="/console/coop/?filter=1&letter=<?php echo $letter.'">'.$letter; ?></a>&nbsp;
     <?php endforeach; ?>
     </center>
     <a href="/console/coop/new" class="new">Nowy</a>

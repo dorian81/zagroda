@@ -13,25 +13,27 @@
 	    <div class="left_block">';
 	        <?php if ($this->params('baners_left_block_title_enabled')=='true') : ?>
 		<div class="b-right" style="clear:left;">
-		    <h2><?php //Nazwa banerów z parametrów ?></h2>
+		    <h2><?php echo $this->params('baners_left_block_name') ?></h2>
 	            </div>
 	        <?php endif; ?>
 	        <?php foreach($this->baners as $baner) : ?>
 		<div style="clear:right;padding:0 0 15px 25px;">
-		    <a href="<?php echo $baner['url']?>" title="<?php $baner['name']?>">
-		    <?php if ($baner['type']=='img') : ?>
-		    <img src="baners/img/'.$baner['img'].'">
-		    <?php elseif ($baner['type']=='swf') : ?>
-		    <object type="application/x-shockwave-flash" data="baners/swf/'.$baner['swf'].'" width="230" height="160">
-		        <param name="movie" value="baners/swf/'.$baner['swf'].'">
-		        <param name="quality" value="high">
-		        <param name="wmode" value="transparent">
-		    </object>
-		    <?php else : ?>
-		    <?php echo stripslashes($baner['html']); ?>
-		    <?php endif; ?>
+		    <a href="<?php echo $baner['url']?>" title="<?php echo $baner['name']?>">
+		    <?php if ($baner['type']=='img') {
+			    echo '<img src="baners/img/'.$baner['img'].'">';
+			  }else if ($baner['type']=='swf'){
+			    echo '<object type="application/x-shockwave-flash" data="baners/swf/'.$baner['swf'].'" width="230" height="160">
+				    <param name="movie" value="baners/swf/'.$baner['swf'].'">
+				    <param name="quality" value="high">
+				    <param name="wmode" value="transparent">
+				 </object>';
+			  }else{
+			    echo stripslashes($baner['html']);
+			  } ?>
+		    </a>
 		</div>
 	        <?php endforeach; ?>
+	    </div>
 	    <?php endif; ?>
 	    <?php if ($this->coop&&$this->params('cooper_block_enabled')) : ?>
 	    <div class="left_block">
