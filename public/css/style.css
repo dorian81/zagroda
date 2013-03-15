@@ -1,0 +1,202 @@
+body{
+	background: url(../img/bg.jpg) repeat;
+	color:#660;
+	font-family:arial;
+	font-size:12px;
+}
+
+h2{
+	margin-top:0 !important;
+}
+
+#header{
+	width:1080px;
+	margin-top:30px;
+	background:url(../img/main-bg.png) repeat-y;
+	border-top:1px solid #660;
+}
+
+#logo{
+	height:130px;
+	width:1072px;
+}
+
+#logo img{
+	margin-top:5px;
+}
+
+#menu_wrapper{
+	width:1072px;
+	background:url(../img/maintop-bg.jpg) repeat-x;
+	height:42px;
+	padding:18px 0 0 0;
+}
+
+#top_menu{
+	width:1064px;
+	height:25px;
+}
+
+#top_menu a{
+	color: #660;
+	font-weight:bold;
+	font-size:18px;
+	margin-right:20px;
+}
+
+#top_menu a:hover{
+	color:#990;
+	text-decoration:none !important;
+}
+
+a{
+	text-decoration:none;
+	color:#660;
+}
+
+a:hover{
+	text-decoration:underline;
+}
+
+a img{
+	border:none;
+}
+
+.top_btn{
+	background: url(../img/button.png) no-repeat;
+	width:126px;
+	height:30px;
+	float:left;
+	padding-top:5px;
+}
+
+.top_btn:hover{
+	background: url(../img/button-hover.png);
+}
+
+#content_wrapper{
+	width:1080px;
+	background:url(../img/main-bg.png);
+	min-height:400px;
+	padding:20px 0 20px 0;
+	border-bottom:1px solid #660;
+	clear:both;
+	overflow:hidden;
+}
+
+#content{
+	width:740px;
+	float:right;
+	text-align:left;
+	padding:0 20px 0 20px;
+}
+
+.caps{
+	font-size:20px;
+	font-weight:bold;
+	color:#440;
+}
+
+#content p{
+	font-size:14px;
+	font-weight:normal;
+}
+
+.b-right{
+	position:relative;
+	float:right;
+	padding-right:15px;
+	font-weight:bold;
+}
+
+.right{
+	position:relative;
+	float:right;
+	padding-right:15px;
+	margin-left:5px;
+}
+
+#left_column{
+	float:left;
+	text-align:left;
+	width:300px;
+}
+
+.left_block{
+	background:url(../img/widget-shadow.png) top right no-repeat;
+	padding-top:20px;
+	min-height:140px;
+	width:100%;
+	margin-bottom:10px;
+}
+
+.left_block h2{
+	margin-top:0 !important;
+}
+
+#links{
+	padding:2px 0 0 25px;
+	clear:right;
+}
+
+#links ul li{
+	padding-left:0;
+}
+
+#links img{
+	max-width:120px !important;
+	border:none;
+	padding:2px;
+}
+#links a{
+	font-weight:bold;
+	max-width:120px !important;
+}
+
+#footer{
+	width:1080px;
+	clear:both;
+	background:url(../img/topnav-bg.jpg) repeat-x;
+	height:32px;
+	margin-top:5px;
+	font-size:12px;
+	text-align:left;
+	padding-top:10px;
+}
+
+.coop{
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+	width:230px;
+	min-height:140px;
+	float:left;
+	margin:10px;
+}
+
+.coop a{
+	display:block;	
+}
+.coop img{
+	display:block;
+	max-width:250px;
+	max-height:110px;
+	border:none;
+}
+
+.main_cover{
+	margin-left:100px;
+}
+
+.author{
+	font-size:14px;
+	font-weight:bold;
+	float:right;
+}
+
+#coop_letters{
+	text-align:center;
+	font-size:18px;
+	font-weight:bold;
+	padding-bottom:10px;
+}

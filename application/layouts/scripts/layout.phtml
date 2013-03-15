@@ -1,0 +1,65 @@
+<?php 
+$this->headMeta()->appendHttpEquiv('Content-Type', 'text/html;charset=utf-8');
+$this->headTitle()->setSeparator(' - ');
+$this->headTitle('Magazyn Ogólnopolski Zagroda');
+
+echo $this->doctype(); ?>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+    <head>
+	<?php echo $this->headMeta(); ?>
+
+	<?php echo $this->headTitle(); ?>
+
+	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css');?>
+
+    </head>
+    <body>
+	<center>
+	    <?php if ($this->params('baners_enabled')=='true') : ?>
+		baner górny jeśli włączony
+		<div id="top_baner">
+		    <a href="<?php echo $this->topBaner['url']; ?>" title="<?php echo $this->topBaner['name']; ?>">
+			<?php if($this->topBaner['type']=='img') : ?>
+			    <img src="<?php echo $this->baseUrl().'/baners/img/'.$this->topBaner['img']; ?>">
+			<?php elseif ($this->topBaner['type']=='swf') : ?>
+			    <object type="application/x-shockwave-flash" data="<?php echo $this->baseUrl().'baners/swf/'.$this->topBaner['swf']; ?>" width="230" height="160">
+				<param name="movie" value="<?php echo $this->baseUrl().'banners/swf/'.$this->topBaner['swf']; ?>">
+				<param name="quality" value="high">
+				<param name="wmode" value="transparent">
+			    </object>
+			<?php else : ?>
+			    <?php echo stripslashes($this->topBaner['html']); ?>
+			<?php endif; ?>
+		</div>
+	    <?php endif; ?>
+	    <div id="header">
+		<div id="logo" style="background:url(<?php echo $this->baseUrl().'/img/'.$this->params('logo_bg'); ?>) no-repeat;">
+		    <a href="."><img src="<?php echo $this->baseUrl().'/img/logo.png'; ?>" height="100%" alt="logo"></a>
+		</div>
+		<div id="menu_wrapper">
+		    <div id="top_menu">
+			<?php echo $this->menu(); ?>
+		    </div>
+		</div>
+	    </div>
+	    <div id="content_wrapper">
+		<h1><?php echo $this->escape($this->title); ?></h1>
+		<?php echo $this->layout()->content; ?>
+	    </div>
+	    <div id="footer">
+	    	<span style="float:left;margin-left:20px;">
+	    	    &copy; <strong>AGYAS</strong> 2011.
+	    	</span>
+	    	<span style="float:right; margin-right:20px;">
+	    	    Design &amp; Engine: <a href="mailto:admin@dorian.waw.pl" title="admin@dorian.waw.pl"><strong>Robert Szyma&#324;ski</strong></a>
+	    	</span>
+	    	<script type="text/javascript">
+	    	    if (navigator.appName=="Microsoft Internet Explorer"){
+	    		document.getElementById('footer').style.width='1080px'
+	    	    }
+	    	</script>
+	    </div>
+	</center>
+    </body>
+</html>

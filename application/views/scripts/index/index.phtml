@@ -1,0 +1,72 @@
+<div id="left_column">
+    <?php if ($this->coverImg) :?>
+        <div class="left_block">
+	    <div class="b-right" style="clear:left;">
+		<h2><?php echo $this->params('newest_name') ?></h2>
+	    </div>
+	    <a href="show_issue.php?id=newest">
+	        <IMG SRC="<?php echo $this->coverImg; ?>" style="margin:0 5px 5px 25px;" BORDER="0" ALT="okładka">
+	    </a>
+	</div><br>
+    <?php endif; ?>
+    <?php if ($this->baners&&$this->params('baners_enabled')=='true') :?>
+	    <div class="left_block">';
+	        <?php if ($this->params('baners_left_block_title_enabled')=='true') : ?>
+		<div class="b-right" style="clear:left;">
+		    <h2><?php //Nazwa banerów z parametrów ?></h2>
+	            </div>
+	        <?php endif; ?>
+	        <?php foreach($this->baners as $baner) : ?>
+		<div style="clear:right;padding:0 0 15px 25px;">
+		    <a href="<?php echo $baner['url']?>" title="<?php $baner['name']?>">
+		    <?php if ($baner['type']=='img') : ?>
+		    <img src="baners/img/'.$baner['img'].'">
+		    <?php elseif ($baner['type']=='swf') : ?>
+		    <object type="application/x-shockwave-flash" data="baners/swf/'.$baner['swf'].'" width="230" height="160">
+		        <param name="movie" value="baners/swf/'.$baner['swf'].'">
+		        <param name="quality" value="high">
+		        <param name="wmode" value="transparent">
+		    </object>
+		    <?php else : ?>
+		    <?php echo stripslashes($baner['html']); ?>
+		    <?php endif; ?>
+		</div>
+	        <?php endforeach; ?>
+	    <?php endif; ?>
+	    <?php if ($this->coop&&$this->params('cooper_block_enabled')) : ?>
+	    <div class="left_block">
+	        <div class="b-right" style="clear:left;"><h2><?php echo $this->params('cooper_name'); ?></h2></div>
+	        <div id="links">
+		<?php foreach($this->coop as $cooper) : ?>
+		    <a href="<?php echo $cooper['url']; ?>" TARGET="_blank" title="<?php echo $cooper['name'] ?>"><IMG SRC="banery/<?php echo $cooper['img']; ?>" BORDER="0" ALT="<?php echo $cooper['name']; ?>"></A>
+		<?php endforeach; ?>
+	        </div>
+	        <script type="text/javascript">
+		if (navigator.appName=="Microsoft Internet Explorer"){
+		    var kolekcja=document.getElementById('links').children;
+		    for (var i=0;i<kolekcja.length;i++){
+		    if (kolekcja[i].firstChild.clientWidth>120){	
+		        kolekcja[i].firstChild.style.width='120px';
+		    }
+		    }
+		}
+	        </script>
+	        <span class="b-right"><a href="wspolpraca.php">Więcej -></a></span>
+	    </div>
+	    <?php endif; ?>
+	</div>
+	<div id="content">
+	<?php echo $this->staticContent['content']; ?>
+	<br>
+	<?php if ($this ->params('news_enabled')!='false') : ?>
+	    <?php if (count($this->news)>0) : ?>
+		<h1 style="text-align:center"> W najnowszym numerze:</h1>
+		<?php foreach ($this->news as $new) : ?>
+		    <h3><?php echo $new['h3']; ?></h3>
+		    <h1><?php echo $new['h1']; ?></h1>
+		    <?php echo $new['content']?><br><br> 
+		    <a href="show_issue.php?id=newest&page=<?php echo $new['page']; ?>"><b style="font-size:12px;">Czytaj dalej str. <?php echo $new['page']; ?></b></a><br><br>
+		<?php endforeach; ?>
+	    <?php endif; ?>
+	<?php endif; ?>
+</div>
