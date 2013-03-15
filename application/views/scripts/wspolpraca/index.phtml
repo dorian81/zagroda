@@ -1,4 +1,6 @@
 <br /><br />
 <div id="view-content">
-	<p>View script for controller <b>Wspolpraca</b> and script/action name <b>index</b></p>
+    <?php foreach($this->coopArr as $coop) : ?>
+	<div class="coop"><center><a href="<?php echo $coop['url']; ?>" TARGET="_blank"><IMG SRC="/banery/<?php echo $coop['img']; ?>" border="0" alt="<?php echo $coop['name']; ?>"><?php echo $coop['name']; ?></A></center></div>
+    <?php endforeach; ?>
 </div>

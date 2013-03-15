@@ -14,7 +14,7 @@ class Zend_View_Helper_Menu extends Zend_View_Helper_Abstract{
 
 	//dodanie "Współpracy"
 	if ($params['cooper_enabled']=='true'){
-	    $menu.='<a href="/wspolpraca.php">'.$params['cooper_name'].'</a>';
+	    $menu.='<a href="/wspolpraca">'.$params['cooper_name'].'</a>';
 	}
 	
 	//pobranie stron statycznych biorących udział w menu

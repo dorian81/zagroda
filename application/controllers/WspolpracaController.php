@@ -10,7 +10,9 @@ class WspolpracaController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $coopObj = new Application_Model_DbTable_Cooperants();
+	$coopArr = $coopObj->getActive();
+	$this->view->coopArr = $coopArr;
     }
 
 
