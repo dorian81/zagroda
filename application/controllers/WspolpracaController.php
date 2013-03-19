@@ -20,7 +20,9 @@ class WspolpracaController extends Zend_Controller_Action
        $coopObj = new Application_Model_DbTable_Cooperants();
        $coopArr = $coopObj->getFiltered($this->getRequest()->getParam('letter'));
        $this->view->coopArr = $coopArr;
-       //
+       
+       $coopLetters = $coopObj->getLetters();
+       $this->view->coopLetters = $coopLetters;
     }
 
 
