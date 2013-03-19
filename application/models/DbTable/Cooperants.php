@@ -17,6 +17,8 @@ class Application_Model_DbTable_Cooperants extends Zend_Db_Table_Abstract
         $result = $this->fetchAll('UCASE(SUBSTR(name,1,1))="'.$letter.'" AND active=1');
         return $result->toArray();
     }
-
+    public function getLetters(){
+        $result = $this->select('DISTINCT UCASE(SUBSTR(name,1,1)) AS letters');
+        return $result->toArray();
 }
 
