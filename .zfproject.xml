@@ -15,6 +15,7 @@
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Wspolpraca">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="filter"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -51,6 +52,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="static"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Wspolpraca">
+            <viewScriptFile forActionName="filter"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -92,6 +96,7 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Wspolpraca">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="filter"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

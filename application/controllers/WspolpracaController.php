@@ -15,6 +15,13 @@ class WspolpracaController extends Zend_Controller_Action
 	$this->view->coopArr = $coopArr;
     }
 
+    public function filterAction()
+    {
+        // action body
+    }
+
 
 }
+
+
 
