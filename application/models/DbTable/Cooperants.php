@@ -13,6 +13,10 @@ class Application_Model_DbTable_Cooperants extends Zend_Db_Table_Abstract
 	$result = $this->fetchAll('active=1');
 	return $result->toArray();
     }
+    public function getFiltered($letter){
+        $result = $this->fetchAll('name like \''.$letter.'\'.*');
+        return $result->toArray();
+    }
 
 }
 
