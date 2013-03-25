@@ -4,10 +4,10 @@
 	    <div class="b-right" style="clear:left;">
 		<h2><?php echo $this->params('newest_name') ?></h2>
 	    </div>
-	    <a href="show_issue.php?id=newest">
+	    <a href="issue/show?id=<?php echo $this->newestNo; ?>">
 	        <IMG SRC="<?php echo $this->coverImg; ?>" style="margin:0 5px 5px 25px;" BORDER="0" ALT="okładka">
 	    </a>
-	</div><br>
+	</div>
     <?php endif; ?>
     <?php if ($this->baners&&$this->params('baners_enabled')=='true') :?>
 	    <div class="left_block">';
@@ -60,13 +60,15 @@
 	<br>
 	<?php if ($this ->params('news_enabled')!='false') : ?>
 	    <?php if (count($this->news)>0) : ?>
-		<h1 style="text-align:center"> W najnowszym numerze:</h1>
-		<?php foreach ($this->news as $new) : ?>
-		    <h3><?php echo $new['h3']; ?></h3>
-		    <h1><?php echo $new['h1']; ?></h1>
-		    <?php echo $new['content']?><br><br> 
-		    <a href="show_issue.php?id=newest&page=<?php echo $new['page']; ?>"><b style="font-size:12px;">Czytaj dalej str. <?php echo $new['page']; ?></b></a><br><br>
-		<?php endforeach; ?>
+		<div id="new_no">
+		    <h1 style="text-align:center"> W najnowszym numerze:</h1>
+		    <?php foreach ($this->news as $new) : ?>
+			<h3><?php echo $new['h3']; ?></h3>
+			<h1><?php echo $new['h1']; ?></h1>
+			<?php echo $new['content']?><br><br> 
+			<a href="\issue\show?id=<?php echo $this->newestNo; ?>&page=<?php echo $new['page']; ?>"><b style="font-size:12px;">Czytaj dalej str. <?php echo $new['page']; ?></b></a><br><br>
+		    <?php endforeach; ?>
+		</div>
 	    <?php endif; ?>
 	<?php endif; ?>
 </div>

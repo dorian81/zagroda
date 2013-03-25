@@ -25,7 +25,9 @@ class Zend_View_Helper_Menu extends Zend_View_Helper_Abstract{
 	}
 	
 	//dodanie pozostałych elementów menu
-	$menu.='<a href="show_issue.php?id=newest">'.$params['newest_name'].'</a><a href="archiwum.php">'.$params['archive_name'].'</a>';
+	$issueObj = new Application_Model_DbTable_Issues();
+	$newest = $issueObj->getNewestIssue();
+	$menu.='<a href="/issue/show?id='.$newest['ordinal_no'].'">'.$params['newest_name'].'</a><a href="/issue">'.$params['archive_name'].'</a>';
 
 	return $menu;
     }

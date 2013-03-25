@@ -19,6 +19,7 @@
         </controllerFile>
         <controllerFile controllerName="Issue">
           <actionMethod actionName="index"/>
+          <actionMethod actionName="show"/>
         </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
@@ -51,9 +52,6 @@
             <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="test"/>
-          </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="static"/>
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Wspolpraca">
@@ -61,6 +59,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Issue">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Issue">
+            <viewScriptFile forActionName="show"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -106,6 +107,7 @@
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Issue">
             <testApplicationActionMethod forActionName="index"/>
+            <testApplicationActionMethod forActionName="show"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>

@@ -3,13 +3,17 @@
 class IndexController extends Zend_Controller_Action
 {
 
-    private $staticObj;
-	private $newestIssue;
-	private $newestNews;
-	private $leftBaners;
-	private $leftCoop;
-	
-	public function init()
+    private $staticObj = null;
+
+    private $newestIssue = null;
+
+    private $newestNews = null;
+
+    private $leftBaners = null;
+
+    private $leftCoop = null;
+
+    public function init()
     {
 		$this->staticObj = new Application_Model_DbTable_Static();
 		$this->newestIssue = new Application_Model_DbTable_Issues();
@@ -36,6 +40,9 @@ class IndexController extends Zend_Controller_Action
 		
 		//Okładka najnowszego numeru
 		$this->view->coverImg = 'covers/'.$newestIssueArray['cover'].'_2.jpg';
+		
+		//Numer porządkowy najnowszego numer
+		$this->view->newestNo = $newestIssueArray['ordinal_no'];
 
 		//Banery
 		
@@ -45,7 +52,6 @@ class IndexController extends Zend_Controller_Action
 		
 		$this->view->coop = $this->leftCoop->getLeftBlock();
     }
-
 
     public function staticAction()
     {
@@ -69,9 +75,9 @@ class IndexController extends Zend_Controller_Action
 		$static = $this->staticObj->getStatic($this->getRequest()->getParam('id'));
 		$this->view->staticContent = $static;
     }
-
-
 }
+
+
 
 
 

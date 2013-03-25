@@ -1,34 +1,14 @@
-<?php 
-    $this->headScript()->appendFile('js/jquery-1.4.2.min.js');
-    $this->headScript()->appendFile('js/fancybox/jquery.fancybox-1.3.4.js');
-?>
-<br /><br />
-	<link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox-1.3.4.css" media="screen" />
-	<script type="text/javascript">
-	    $(document).ready(function() {
-	    var resx=($(document).width()-920)/2;
-		$("a[rel=gal]").fancybox({
-		    'transitionIn'		: 'fade',
-		    'transitionOut'		: 'fade',
-		    'titlePosition' 	: 'inside',
-		    'titleFormat'		: function (title, currentArray, currentIndex, currentOpts) {
-					    return '<div id="tip7-title">' + (title && title.length ? '<b>' + title + '</b>' : '' ) + 'Strona ' + (currentIndex + 1) + ' z ' + currentArray.length + '</div>';
-					},
-		    'autoScale'			: false,
-		    'autoDimensions'	: true,
-		    onComplete			: function (){
-					    $("#fancybox-outer").css({'width':'920px','height':'1332px'});
-					    $("#fancybox-wrap").css({'width':'920px','height':'1332px','left':resx+'px !important','top':'20px !important'});
-					    $("#fancybox-content").css({'width':'900px','height':'1276px'});
-					    $("#fancybox-title").css({'width':'900px','top':$('#fancybox-title').position().top*(-1)});
-					    $("#fancybox-overlay").css('height','1400px');
-					    $('#tip7-title').css({'font':'20px bold','text-align':'center'});
-					    $.fancybox.center();
-					}
-		});
-	    });
-	</script>
 
-<div id="view-content">
-	<p>View script for controller <b>Issue</b> and script/action name <b>index</b></p>
+<div id="left_column">
+    <div class="b-right" style="clear:left;"><h2><?php echo $this->params('archive_name')?></h2></div>
+    <div id="links" style="text-align:right !important;padding-right:25px;">
+	<?php foreach ($this->archivalArr as $issue):  ?>
+	    <a href="/issue/show?id=<?php echo $issue['ordinal_no'].'">'.$issue['number'].'('.$issue['ordinal_no'].')/'.$issue['year']; ?></a><br>
+	<?php endforeach; ?>
+    </div>
+</div>
+<div id="content">
+    <?php foreach ($this->archivalArr as $issue): ?>
+	<div class="coop" style="width:150px !important"><center><a href="/issue/show?id=<?php echo $issue['ordinal_no']; ?>"><IMG SRC="/covers/<?php echo $issue['ordinal_no']; ?>_3.jpg" WIDTH="69" HEIGHT="99" BORDER="0"><br><br><?php echo $issue['number'].'('.$issue['ordinal_no'].')/'.$issue['year']?></a></center></div>
+    <?php endforeach; ?>
 </div>

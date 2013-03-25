@@ -3,6 +3,9 @@
 class WspolpracaController extends Zend_Controller_Action
 {
 
+    private $coopArr;
+    private $coopLetters;
+    
     public function init()
     {
         $coopObj = new Application_Model_DbTable_Cooperants();

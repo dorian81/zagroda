@@ -1,5 +1,5 @@
 body{
-	background: url(../img/bg.jpg) repeat;
+	background: url(/img/bg.jpg) repeat;
 	color:#660;
 	font-family:arial;
 	font-size:12px;
@@ -12,7 +12,7 @@ h2{
 #header{
 	width:1080px;
 	margin-top:30px;
-	background:url(../img/main-bg.png) repeat-y;
+	background:url(/img/main-bg.png) repeat-y;
 	border-top:1px solid #660;
 }
 
@@ -27,7 +27,7 @@ h2{
 
 #menu_wrapper{
 	width:1072px;
-	background:url(../img/maintop-bg.jpg) repeat-x;
+	background:url(/img/maintop-bg.jpg) repeat-x;
 	height:42px;
 	padding:18px 0 0 0;
 }
@@ -58,12 +58,16 @@ a:hover{
 	text-decoration:underline;
 }
 
+.disabled{
+	color:#990 !important;
+}
+
 a img{
 	border:none;
 }
 
 .top_btn{
-	background: url(../img/button.png) no-repeat;
+	background: url(/img/button.png) no-repeat;
 	width:126px;
 	height:30px;
 	float:left;
@@ -71,12 +75,12 @@ a img{
 }
 
 .top_btn:hover{
-	background: url(../img/button-hover.png);
+	background: url(/img/button-hover.png);
 }
 
 #content_wrapper{
 	width:1080px;
-	background:url(../img/main-bg.png);
+	background:url(/img/main-bg.png);
 	min-height:400px;
 	padding:20px 0 20px 0;
 	border-bottom:1px solid #660;
@@ -94,11 +98,15 @@ a img{
 .caps{
 	font-size:20px;
 	font-weight:bold;
-	color:#440;
 }
 
 #content p{
 	font-size:14px;
+	font-weight:normal;
+}
+
+#new_no p{
+	font-size:12px;
 	font-weight:normal;
 }
 
@@ -123,7 +131,7 @@ a img{
 }
 
 .left_block{
-	background:url(../img/widget-shadow.png) top right no-repeat;
+	background:url(/img/widget-shadow.png) top right no-repeat;
 	padding-top:20px;
 	min-height:140px;
 	width:100%;
@@ -156,7 +164,7 @@ a img{
 #footer{
 	width:1080px;
 	clear:both;
-	background:url(../img/topnav-bg.jpg) repeat-x;
+	background:url(img/topnav-bg.jpg) repeat-x;
 	height:32px;
 	margin-top:5px;
 	font-size:12px;

@@ -1,0 +1,51 @@
+<?php
+    $this->headTitle($this->issue['number'].'('.$this->issue['ordinal_no'].')/'.$this->issue['year']);
+    $this->headScript()->appendFile('/js/jquery-1.4.2.min.js');
+    $this->headScript()->appendFile('/js/fancybox/jquery.fancybox-1.3.4.js');
+    $this->headLink()->appendStylesheet('/js/fancybox/jquery.fancybox-1.3.4.css');
+    $this->headScript()->captureStart(); ?>
+	$(document).ready(function() {
+	    var resx=($(document).width()-920)/2;
+		$("a[rel=gal]").fancybox({
+		    'transitionIn'		: 'fade',
+		    'transitionOut'		: 'fade',
+		    'titlePosition' 	: 'inside',
+		    'titleFormat'		: function (title, currentArray, currentIndex, currentOpts) {
+					    return '<div id="tip7-title">' + (title && title.length ? '<b>' + title + '</b>' : '' ) + 'Strona ' + (currentIndex + 1) + ' z ' + currentArray.length + '</div>';
+					},
+		    'autoScale'			: false,
+		    'autoDimensions'	: true,
+		    onComplete			: function (){
+					    $("#fancybox-outer").css({'width':'920px','height':'1332px'});
+					    $("#fancybox-wrap").css({'width':'920px','height':'1332px','left':resx+'px !important','top':'20px !important'});
+					    $("#fancybox-content").css({'width':'900px','height':'1276px'});
+					    $("#fancybox-title").css({'width':'900px','top':$('#fancybox-title').position().top*(-1)});
+					    $("#fancybox-overlay").css('height','1400px');
+					    $('#tip7-title').css({'font':'20px bold','text-align':'center'});
+					    $.fancybox.center();
+					}
+		});
+	    });
+<?php
+    $this->headScript()->captureEnd();
+?>
+
+<div id="left_column">
+	<span style="margin-left:25px; font-weight:bold; font-size:20px;"><?php echo $this->issue['number'].'('.$this->issue['ordinal_no'].')/'.$this->issue['year']; ?></span>
+	<IMG SRC="/covers/<?php echo $this->issue['ordinal_no']; ?>_2.jpg" style="margin:20px 5px 5px 25px;" BORDER="0" ALT="okładka">
+</div>
+<div id="content">
+    <H2>Spis treści</H2>
+    <ul>
+    <?php $i=1; foreach ($this->articles as $page): ?>
+	<li<?php if ($page['title']=='') echo ' style="display:none"'; ?>><a href="/issues/<?php echo $this->issue['ordinal_no'].'/'.$page['page'].'" rel="gal" id="'.$i.'">'; if ($page['title']=='') echo '&nbsp'; else echo $page['title']; $i++; ?></a></li>
+    <?php endforeach; ?>
+    </ul>
+    <?php if (isset($_GET['page'])): ?>
+	<script type=text/javascript>
+	    jQuery(document).ready(function() {
+		$("#<?php echo $_GET['page']; ?>").trigger('click');
+	    });
+	</script>
+    <?php endif; ?>
+</div>

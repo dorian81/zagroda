@@ -11,13 +11,13 @@ echo $this->doctype(); ?>
 
 	<?php echo $this->headTitle(); ?>
 
-	<?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/style.css');?>
+	<?php echo $this->headLink()->prependStylesheet('/css/style.css');?>
 
+	<?php echo $this->headScript(); ?>
     </head>
     <body>
 	<center>
-	    <?php if ($this->params('baners_enabled')=='true') : ?>
-		baner górny jeśli włączony
+	    <?php if ($this->params('baners_enabled')=='true'&&count($this->topBaner)>0) : ?>
 		<div id="top_baner">
 		    <a href="<?php echo $this->topBaner['url']; ?>" title="<?php echo $this->topBaner['name']; ?>">
 			<?php if($this->topBaner['type']=='img') : ?>
@@ -31,6 +31,7 @@ echo $this->doctype(); ?>
 			<?php else : ?>
 			    <?php echo stripslashes($this->topBaner['html']); ?>
 			<?php endif; ?>
+		    </a>
 		</div>
 	    <?php endif; ?>
 	    <div id="header">
@@ -44,7 +45,6 @@ echo $this->doctype(); ?>
 		</div>
 	    </div>
 	    <div id="content_wrapper">
-		<h1><?php echo $this->escape($this->title); ?></h1>
 		<?php echo $this->layout()->content; ?>
 	    </div>
 	    <div id="footer">
