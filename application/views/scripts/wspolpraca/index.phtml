@@ -1,5 +1,10 @@
 <br /><br />
 <div id="view-content">
+    <div id="coop_letters">
+	<?php foreach ($this->coopLetters as $letter): ?>
+	    <a href="wspolpraca/filter?letter=<?php echo $letter; ?>"><?php echo $letter; ?></a>&nbsp;
+	<?php endforeach; ?>
+    </div>
     <?php foreach($this->coopArr as $coop) : ?>
 	<div class="coop"><center><a href="<?php echo $coop['url']; ?>" TARGET="_blank"><IMG SRC="/banery/<?php echo $coop['img']; ?>" border="0" alt="<?php echo $coop['name']; ?>"><?php echo $coop['name']; ?></A></center></div>
     <?php endforeach; ?>

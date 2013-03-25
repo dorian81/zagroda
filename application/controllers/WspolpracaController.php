@@ -5,24 +5,32 @@ class WspolpracaController extends Zend_Controller_Action
 
     public function init()
     {
-        /* Initialize action controller here */
+        $coopObj = new Application_Model_DbTable_Cooperants();
+	$this->coopArr = $coopObj->getActive();
+	$tmp=array();
+	foreach ($this->coopArr as $coop){
+	    $tmp[]=strtoupper(substr($coop['name'],0,1));
+	}
+	$this->coopLetters=array_unique($tmp);
+	sort($this->coopLetters);
     }
 
     public function indexAction()
     {
-        $coopObj = new Application_Model_DbTable_Cooperants();
-	$coopArr = $coopObj->getActive();
-	$this->view->coopArr = $coopArr;
+	$this->init();
+//        $coopObj = new Application_Model_DbTable_Cooperants();
+//	$coopArr = $coopObj->getActive();
+	$this->view->coopArr = $this->coopArr;
+	$this->view->coopLetters = $this->coopLetters;
     }
 
     public function filterAction()
     {
-       $coopObj = new Application_Model_DbTable_Cooperants();
-       $coopArr = $coopObj->getFiltered($this->getRequest()->getParam('letter'));
-       $this->view->coopArr = $coopArr;
-       
-       $coopLetters = $coopObj->getLetters();
-       $this->view->coopLetters = $coopLetters;
+	$this->init();
+	$coopObj = new Application_Model_DbTable_Cooperants();
+	$coopArr = $coopObj->getFiltered($this->getRequest()->getParam('letter'));
+	$this->view->coopArr = $coopArr;
+	$this->view->coopLetters = $this->coopLetters;
     }
 
 

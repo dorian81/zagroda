@@ -1,5 +1,11 @@
 <br /><br />
 <div id="view-content">
-	<p>View script for controller <b>Wspolpraca</b> and script/action name <b>filter</b></p>
-        <?php var_dump($this->coopArr); ?>
+    <div id="coop_letters">
+    <?php foreach ($this->coopLetters as $letter): ?>
+        <a href="filter?letter=<?php echo $letter; ?>"><?php echo $letter; ?></a>&nbsp;
+    <?php endforeach; ?>
+    </div>
+    <?php foreach($this->coopArr as $coop) : ?>
+    <div class="coop"><center><a href="<?php echo $coop['url']; ?>" TARGET="_blank"><IMG SRC="/banery/<?php echo $coop['img']; ?>" border="0" alt="<?php echo $coop['name']; ?>"><?php echo $coop['name']; ?></A></center></div>
+    <?php endforeach; ?>
 </div>

@@ -17,6 +17,9 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="filter"/>
         </controllerFile>
+        <controllerFile controllerName="Issue">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -55,6 +58,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Wspolpraca">
             <viewScriptFile forActionName="filter"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Issue">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -97,6 +103,9 @@
           <testApplicationControllerFile forControllerName="Wspolpraca">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="filter"/>
+          </testApplicationControllerFile>
+          <testApplicationControllerFile forControllerName="Issue">
+            <testApplicationActionMethod forActionName="index"/>
           </testApplicationControllerFile>
         </testApplicationControllerDirectory>
       </testApplicationDirectory>
