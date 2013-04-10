@@ -11,6 +11,7 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
           <actionMethod actionName="static"/>
+          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Wspolpraca">
@@ -46,18 +47,24 @@
           <controllersDirectory>
             <controllerFile controllerName="Login">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="login"/>
             </controllerFile>
             <controllerFile controllerName="Index">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="listIssues"/>
+              <actionMethod actionName="listStatic"/>
+              <actionMethod actionName="logout"/>
+              <actionMethod actionName="coop"/>
+              <actionMethod actionName="baners"/>
+              <actionMethod actionName="upload"/>
+              <actionMethod actionName="admins"/>
+              <actionMethod actionName="params"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false">
             <layoutScriptsDirectory enabled="false"/>
           </layoutsDirectory>
-          <modelsDirectory>
-            <dbTableDirectory enabled="false"/>
-          </modelsDirectory>
           <viewsDirectory>
             <viewScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Login">
@@ -66,10 +73,49 @@
               <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="index"/>
               </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Login">
+                <viewScriptFile forActionName="login"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="listIssues"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="listStatic"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="logout"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="coop"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="baners"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="upload"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="admins"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Index">
+                <viewScriptFile forActionName="params"/>
+              </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
             <viewFiltersDirectory/>
           </viewsDirectory>
+          <modelsDirectory>
+            <dbTableDirectory>
+              <dbTableFile dbTableName="Cooperants"/>
+              <dbTableFile dbTableName="Issues"/>
+              <dbTableFile dbTableName="Admins"/>
+              <dbTableFile dbTableName="Articles"/>
+              <dbTableFile dbTableName="Baners"/>
+              <dbTableFile dbTableName="News"/>
+              <dbTableFile dbTableName="Parameters"/>
+              <dbTableFile dbTableName="Static"/>
+            </dbTableDirectory>
+          </modelsDirectory>
         </moduleDirectory>
       </modulesDirectory>
       <viewsDirectory>
@@ -94,6 +140,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Issue">
             <viewScriptFile forActionName="show"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="logout"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
@@ -132,6 +181,7 @@
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="static"/>
+            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Wspolpraca">
             <testApplicationActionMethod forActionName="index"/>
@@ -147,9 +197,18 @@
             <testApplicationControllerDirectory>
               <testApplicationControllerFile forControllerName="Login">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="login"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="Index">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="listIssues"/>
+                <testApplicationActionMethod forActionName="listStatic"/>
+                <testApplicationActionMethod forActionName="logout"/>
+                <testApplicationActionMethod forActionName="coop"/>
+                <testApplicationActionMethod forActionName="baners"/>
+                <testApplicationActionMethod forActionName="upload"/>
+                <testApplicationActionMethod forActionName="admins"/>
+                <testApplicationActionMethod forActionName="params"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

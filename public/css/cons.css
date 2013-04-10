@@ -1,0 +1,88 @@
+a{
+	text-decoration:none;
+}
+
+.activate{
+	height:16px;
+	background:url('/ico/globe_add.png') left no-repeat;
+	padding-left:18px;
+	text-decoration:
+}
+
+.edit{
+	height:16px;
+	background:url('/ico/form_edit.png') left no-repeat;
+	padding-left:18px;
+}
+
+.delete{
+	height:16px;
+	background:url('/ico/sign_remove.png') left no-repeat;
+	padding-left:18px;
+}
+
+.new{
+	height:16px;
+	background:url('/ico/page.png') left no-repeat;
+	padding-left:18px;	
+}
+
+.back{
+	height:16px;
+	background:url('/ico/arrow_left.png') left no-repeat;
+	padding-left:18px;
+}
+
+.list{
+	height:16px;
+	background:url('/ico/window_text.png') left no-repeat;
+	padding-left:18px;
+}
+
+.deactivate{
+	height:16px;
+	background:url('/ico/globe_remove.png') left no-repeat;
+	padding-left:18px;
+}
+
+.archive{
+	height:16px;
+	background:url('/ico/folder_put.png') left no-repeat;
+	padding-left:18px;
+}
+
+.dearchive{
+	height:16px;
+	background:url('/ico/folder_get.png') left no-repeat;
+	padding-left:18px;
+}
+
+.pass{
+	height:16px;
+	background:url('/ico/key.png') left no-repeat;
+	padding-left:18px;
+}
+
+.img_edit{
+	height:16px;
+	background:url('/ico/mime_jpg.png') left no-repeat;
+	padding-left:18px;
+}
+
+.mime{
+	position:relative;
+	top:3px;
+}
+
+.baner_img{
+	height:16px;
+	margin-right:2px;
+}
+
+.previev{
+	padding:5px;
+}
+
+h3{
+	margin:5px 0 0 0;
+}

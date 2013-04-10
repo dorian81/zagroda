@@ -1,0 +1,25 @@
+<br /><br />
+<div id="view-content">
+    <script type="text/javascript">
+	function cpy(text){
+	    window.prompt ("Skopiuj link:", text);
+	}
+	function del(file){
+	    if (confirm(\'Czy na pewno usunąć \'+file+\'?\')){
+		document.location=\'upload.php?action=del&file=\'+file;
+	    }
+	}
+       </script>
+	<h3>Upload</h3>
+	<form action="upload.php" method="POST" enctype="multipart/form-data">
+	    <input type="file" name="file"><input type="submit" value="Dodaj">
+	</form><br>
+	<table border="1" cellspacing="0" cellpadding="2">
+	    <tr><th>L.P.</th><th>Nazwa pliku</th><th>Akcje</th></tr>
+	    <?php $i=1; if (count($this->content)>0):
+		foreach ($this->content as $entry):
+		    echo '<tr><td>'.$i.'</td><td><a href="../upload/'.$entry.'" target="top">'.$entry.'</a></td><td><input type="button" value="Link" onclick="cpy(\'http://www.zagroda.atomnet.pl/upload/'.$entry.'\')"><input type="button" value="Usuń" onclick="del(\''.$entry.'\')"></td></tr>';
+		endforeach;
+	    endif;?>
+	</table>
+</div>

@@ -1,0 +1,69 @@
+<br /><br />
+<div id="view-content">
+    <form action="params.php" method="POST">
+	    <input type="submit" value="Zapisz">
+	    <table border="0" cellpadding="1">
+		<tr><td><h3>Aktualności</h3></td></tr>
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Nazwa wyświetlana:</td><td><input type="text" name="news_name" value="<?php echo $this->params['news_name']; ?>"></td></tr>
+			<tr><td>Pokazuj</td><td>
+			<?php echo ($this->params['news_enabled']=='true')?'<label><input type="radio" name="news_enabled" value="true" checked> Tak</label><br/><input type="radio" name="news_enabled" value="false"> Nie</label>':'<label><input type="radio" name="news_enabled" value="true"> Tak</label><br/><input type="radio" name="news_enabled" value="false" checked> Nie</label>';?>
+			</td></tr>
+		    </table>
+		</td></tr>
+		<tr><td><h3>Współpraca</h3></td></tr>			
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Nazwa wyświetlana:</td><td><input type="text" name="cooper_name" value="<?php echo $this->params['cooper_name']; ?>"></td></tr>
+			<tr><td>Pokazuj bloczek</td><td>
+			<?php echo ($this->params['cooper_block_enabled']=='true')?'<label><input type="radio" name="cooper_block_enabled" value="true" checked> Tak</label><br/><input type="radio" name="cooper_block_enabled" value="false"> Nie</label>':'<label><input type="radio" name="cooper_block_enabled" value="true"> Tak</label><br/><input type="radio" name="cooper_block_enabled" value="false" checked> Nie</label>';?>
+			</td></tr>
+			<tr><td>Pokazuj w menu</td><td>
+			<?php echo ($this->params['cooper_enabled']=='true')?'<label><input type="radio" name="cooper_enabled" value="true" checked> Tak</label><br/><input type="radio" name="cooper_enabled" value="false"> Nie</label>':'<label><input type="radio" name="cooper_enabled" value="true"> Tak</label><br/><input type="radio" name="cooper_enabled" value="false" checked> Nie</label>';?>
+			</td></tr>
+		    </table>
+		</td></tr>
+		<tr><td><h3>Banery</h3></td></tr>
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Pokazuj banery</td><td>
+			<?php echo ($this->params['baners_enabled']=='true')?'<label><input type="radio" name="baners_enabled" value="true" checked> Tak</label><br/><input type="radio" name="baners_enabled" value="false"> Nie</label>':'<label><input type="radio" name="baners_enabled" value="true"> Tak</label><br/><input type="radio" name="baners_enabled" value="false" checked> Nie</label>';?>
+			</td></tr></td></tr>
+			<tr><td>Pokazuj tytuł lewego bloczka</td><td>
+			<?php echo ($this->params['baners_left_block_title_enabled']=='true')?'<label><input type="radio" name="baners_left_block_title_enabled" value="true" checked> Tak</label><br/><input type="radio" name="baners_left_block_title_enabled" value="false"> Nie</label>':'<label><input type="radio" name="baners_left_block_title_enabled" value="true"> Tak</label><br/><input type="radio" name="baners_left_block_title_enabled" value="false" checked> Nie</label>';?>
+			</td></tr>
+			<tr><td>Tytuł lewego bloczka:</td><td><input type="text" name="baners_left_block_name" value="<?php echo $this->params['baners_left_block_name']; ?>"></td></tr>
+		    </table>
+		</td></tr>
+		<tr><td><h3>Tło nagłówka</h3></td></tr>			
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Obraz:</td><td><img src="/img/<?php echo $this->params['logo_bg']; ?>" width="800px"></td></tr>
+			<tr><td>Akcje:</td><td><a href="change_logo.php?path=/img/&img=<?php echo $this->params['logo_bg']; ?>">Zmień</a> (1072 X 130 px)</td></tr>
+		    </table>
+		</td></tr>
+		<tr><td><h3>Numery - nazwy</h3></td></tr>			
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Najnowszy:</td><td><input type="text" name="newest_name" value="<?php echo $this->params['newest_name']; ?>"></td></tr>
+			<tr><td>Archiwalne:</td><td><input type="text" name="archive_name" value="<?php echo $this->params['archive_name']; ?>"></td></tr>
+			<!--<tr><td style="color:silver">Kalendarium:</td><td><input type="text" name="timetable_name" value="<?php echo $this->params['timetable_name']; ?>" disabled></td></tr>-->
+		    </table>
+		</td></tr>
+		<tr><td><h3>Nagłówek</h3></td></tr>			
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+			<tr><td>Tytuł</td><td><input type="text" name="header_title" value="<?php echo $this->params['header_title']; ?>"></td></tr>
+		    </table>
+		</td></tr>
+		<tr><td><h3>Komunikaty</h3></td></tr>			
+		<tr><td>
+		    <table border="1" CELLSPACING="0" cellpadding="2">
+		<!--		<tr><td>Artykuł z pustą treścią</td><td><textarea cols="50" rows="4" name="no_content_article"><?php echo stripslashes($params['no_content_article']); ?></textarea></td></tr>-->
+			<tr><td>Brak nowego numeru</td><td><textarea cols="50" rows="4"name="no_new_issue"><?php echo stripslashes($this->params['no_new_issue']); ?></textarea></td></tr>
+		    </table>
+		</td></tr>
+	    </table>
+	    <input type="submit" value="Zapisz"></form>
+</div>

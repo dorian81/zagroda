@@ -1,0 +1,36 @@
+<br /><br />
+<div id="view-content">
+	<center>
+	    <h3>Filtry</h3>
+	    <form action="/console/index/coop/?filter=1" method="POST">
+		Aktywne:
+		<select name="active">
+		    <option value="1">Tak</option>
+		    <option value="0">Nie</option>
+		    <option value="all" selected="selected">Wszystkie</option>
+		</select><br>
+		Bloczek:
+		<select name="block">
+		    <option value="1">Tak</option>
+		    <option value="0">Nie</option>
+		    <option value="all" selected="selected">Wszystkie</option>
+		</select><br>
+		<input type="submit" value="Filtruj"><br>
+	    </form>
+	<?php foreach ($this->letters as $letter): ?>
+	    <a href="/console/index/coop/?filter=1&letter=<?php echo $letter.'">'.$letter; ?></a>&nbsp;
+	<?php endforeach; ?>
+	</center>
+	<a href="index.php?action=new_coop" class="new">Nowy</a>&nbsp;<a href="coop.php?action=activate_all" class="activate">Aktywuj wszystkich</a>&nbsp;<a href="coop.php?action=deactivate_all" class="deactivate">Deaktywuj wszystkich</a>
+	<table border="1" cellspacing="0" cellpadding="5">
+	    <tr><th>Nazwa</th><th>Link</th><th>Aktywny</th><th>Grafika</th><th>Akcje</th></tr>';
+	<?php foreach ($this->coop as $row):
+	    echo '<tr><td>'.$row['name'].'</td><td><a href="'.$row['url'].'">'.$row['url'].'</a></td><td>';
+	    echo ($row['active']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="/ico/no.png" class="mime">Nie';
+	    echo '</td><td><img src="/banery/'.$row['img'].'" width="100"><td><a href="index.php?action=edit_coop&id='.$row['id'].'"class="edit">Edytuj</a>&nbsp;';
+	    echo ($row['active']==1)?'<a href="coop.php?action=deactivate&id='.$row['id'].'" class="deactivate"> Dezaktywuj</a><br>':'<a href="coop.php?action=activate&id='.$row['id'].'" class="activate"> Aktywuj</a><br>';
+	    echo ($row['block']==1)?'<a href="coop.php?action=unset_block&id='.$row['id'].'" class="deactivate"> Wyłącz bloczek</a>&nbsp;':'<a href="coop.php?action=set_block&id='.$row['id'].'" class="activate"> Bloczek</a>&nbsp;';
+	    echo '<a href="change_logo.php?path=/banery/&img='.$row['img'].'" class="img_edit">Zmień logo</a></td></tr>';
+	endforeach; ?>
+	</table>
+</div>
