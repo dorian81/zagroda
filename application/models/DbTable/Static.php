@@ -24,7 +24,7 @@ class Application_Model_DbTable_Static extends Zend_Db_Table_Abstract
 	return $row;
     }
     public function getMenuStatic(){
-	$result = $this->fetchAll('menu=1 AND id<>1');
+	$result = $this->fetchAll('menu=1 AND id<>1 AND active = 1');
 	if (!$result){
 	    throw new Exception("Brak linków do menu");
 	}

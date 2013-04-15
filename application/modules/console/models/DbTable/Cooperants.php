@@ -29,5 +29,15 @@ class Console_Model_DbTable_Cooperants extends Zend_Db_Table_Abstract
 	$result = $this->fetchAll('UCASE(SUBSTR(name,1,1))="'.$letter.'"');
 	return $result->toArray();
     }
+
+    public function getCoop($id){
+	$result = $this->fetchRow('id = '.$id);
+	return $result->toArray();
+    }
+
+    public function updateCoop($data,$id){
+	$result = $this->update($data,'id = '.$id);
+	return $result;
+    }
 }
 

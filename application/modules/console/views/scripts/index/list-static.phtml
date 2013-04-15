@@ -1,25 +1,31 @@
-<br /><br />
 <div id="view-content">
+    <script type="text/javascript">
+	function conf(id){
+	    if (confirm('Czy na pewno usunąć ten wpis?')){
+		window.location='/console/static/delete?id='+id
+	    }
+	}
+    </script>
     <h3>Strony statyczne</h3>
-    <a href="index.php?action=new_static" class="new">Nowy</a>
+    <a href="/console/static/new/" class="new">Nowy</a>
 	<table border="1" cellspacing="0" cellpadding="2">
 		<tr><th>L.P.</th><th>Nazwa</th><th>Menu</th><th>Opublikowana</th><th>Akcje</th>
 	<?php foreach ($this->static as $row):
 	    echo '
 		<tr><td>';
-	    echo ($row['ordinal_no']>2)?'<a style="text-decoration:none;" href="static.php?action=move&id='.$row['id'].'&dir=up&id='.$row['id'].'&ord='.$row['ordinal_no'].'"><img src="/ico/arrow_up.png"></a><span>':'<span style="padding-left:16px !important;">';
+	    echo ($row['ordinal_no']>2)?'<a style="text-decoration:none;" href="/console/static/up?id='.$row['id'].'&ord='.$row['ordinal_no'].'"><img src="/ico/arrow_up.png"></a><span>':'<span style="padding-left:16px !important;">';
 	    echo $row['ordinal_no'];
-	    echo ($row['ordinal_no']<$this->count&&$row['id']!=1)?'<a style="text-decoration:none;" href="static.php?action=move&id='.$row['id'].'&dir=down&id='.$row['id'].'&ord='.$row['ordinal_no'].'"><img src="/ico/arrow_down.png"></a>':'</span>';
+	    echo ($row['ordinal_no']<$this->count&&$row['id']!=1)?'<a style="text-decoration:none;" href="/console/static/down?id='.$row['id'].'&ord='.$row['ordinal_no'].'"><img src="/ico/arrow_down.png"></a>':'</span>';
 	    echo'
 		</td><td>'.$row['name'].'</td><td>';
-	    echo ($row['menu']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="ico/no.png" class="mime">Nie';
+	    echo ($row['menu']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="/ico/no.png" class="mime">Nie';
 	    echo '</td><td>';
-	    echo ($row['active']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="ico/no.png" class="mime">Nie';
-	    echo '</td><td><a href="index.php?action=edit_static&id='.$row['id'].'" class="edit">Edytuj</a> ';
+	    echo ($row['active']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="/ico/no.png" class="mime">Nie';
+	    echo '</td><td><a href="/console/static/edit?id='.$row['id'].'" class="edit">Edytuj</a> ';
 	    if ($row['id']!=1){
-		echo '<a href="static.php?action=';
-		echo ($row['active']==0)?'activate&id='.$row['id'].'" class="activate">Publikuj</a>':'deactivate&id='.$row['id'].'" class="deactivate">Anuluj publikację</a>';
-		//ecno '<a href="javascript:void(0);" class="delete" onclick="if (confirm(\'Czy na pewno usunąć ten wpis?\')){window.location=\'static.php?action=delete&id='.$row['id'].'\'}">Usuń</a>';
+		echo '<a href="/console/static/activate?id='.$row['id'].'&active=';
+		echo ($row['active']==0)?'1" class="activate">Publikuj</a>':'0" class="deactivate">Anuluj publikację</a>';
+		echo '&nbsp;<a href="javascript:void(0);" class="delete" onclick="javascript:conf('.$row['id'].');">Usuń</a>';
 	    }
 	    echo '</td></tr>';
 	endforeach; ?>

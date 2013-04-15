@@ -75,13 +75,6 @@ class IndexController extends Zend_Controller_Action
 		$static = $this->staticObj->getStatic($this->getRequest()->getParam('id'));
 		$this->view->staticContent = $static;
     }
-
-    public function logoutAction()
-    {
-        // action body
-    }
-
-
 }
 
 

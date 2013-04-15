@@ -7,7 +7,7 @@ class Console_LoginController extends Zend_Controller_Action
     public function indexAction()
     {
 	$form = new Zend_Form;
-	$form->setAction('login/login')->setMethod('POST');
+	$form->setAction('/console/login/login')->setMethod('POST');
 
 	$login=$form->createElement('text','login');
 	$pass=$form->createElement('password','pass');

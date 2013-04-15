@@ -11,7 +11,6 @@
         <controllerFile controllerName="Index">
           <actionMethod actionName="index"/>
           <actionMethod actionName="static"/>
-          <actionMethod actionName="logout"/>
         </controllerFile>
         <controllerFile controllerName="Error"/>
         <controllerFile controllerName="Wspolpraca">
@@ -60,6 +59,21 @@
               <actionMethod actionName="admins"/>
               <actionMethod actionName="params"/>
             </controllerFile>
+            <controllerFile controllerName="Static">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="new"/>
+              <actionMethod actionName="activate"/>
+              <actionMethod actionName="deactivate"/>
+              <actionMethod actionName="up"/>
+              <actionMethod actionName="down"/>
+              <actionMethod actionName="delete"/>
+            </controllerFile>
+            <controllerFile controllerName="Coop">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="new"/>
+            </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
           <layoutsDirectory enabled="false">
@@ -99,6 +113,33 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Index">
                 <viewScriptFile forActionName="params"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="activate"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="new"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="up"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="down"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Static">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Coop">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Coop">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Coop">
+                <viewScriptFile forActionName="new"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -141,9 +182,6 @@
           <viewControllerScriptsDirectory forControllerName="Issue">
             <viewScriptFile forActionName="show"/>
           </viewControllerScriptsDirectory>
-          <viewControllerScriptsDirectory forControllerName="Index">
-            <viewScriptFile forActionName="logout"/>
-          </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
         <viewFiltersDirectory enabled="false"/>
@@ -181,7 +219,6 @@
           <testApplicationControllerFile forControllerName="Index">
             <testApplicationActionMethod forActionName="index"/>
             <testApplicationActionMethod forActionName="static"/>
-            <testApplicationActionMethod forActionName="logout"/>
           </testApplicationControllerFile>
           <testApplicationControllerFile forControllerName="Wspolpraca">
             <testApplicationActionMethod forActionName="index"/>
@@ -209,6 +246,21 @@
                 <testApplicationActionMethod forActionName="upload"/>
                 <testApplicationActionMethod forActionName="admins"/>
                 <testApplicationActionMethod forActionName="params"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Static">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="new"/>
+                <testApplicationActionMethod forActionName="activate"/>
+                <testApplicationActionMethod forActionName="deactivate"/>
+                <testApplicationActionMethod forActionName="up"/>
+                <testApplicationActionMethod forActionName="down"/>
+                <testApplicationActionMethod forActionName="delete"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Coop">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="new"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>
