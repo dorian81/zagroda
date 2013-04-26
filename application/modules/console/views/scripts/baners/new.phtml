@@ -1,0 +1,61 @@
+
+<div id="view-content">
+<?php
+    $this->headScript()->appendFile('/js/ckeditor/ckeditor.js');
+    $this->headScript()->appendFile('/js/JSCal2-1.9/src/js/jscal2.js');
+    $this->headScript()->appendFile('/js/JSCal2-1.9/src/js/lang/pl.js');
+    $this->headLink()->appendStylesheet('/js/JSCal2-1.9/src/css/jscal2.css');
+?>
+
+    <script type="text/javascript">
+	function type_change(){
+	    var arr = Array(document.getElementById('type-img'),document.getElementById('type-swf'),document.getElementById('type-html'));
+	    var type;
+	    for (a in arr){
+		if (arr[a].checked){
+		    switch (a){
+			case "0": {type = 'img'; break;}
+			case "1": {type = 'swf'; break;}
+			case "2": {type = 'htm'; break;}
+		    }
+		}
+	    }
+	    document.getElementById('img1').disabled=true;
+	    document.getElementById('swf1').disabled=true;
+	    document.getElementById('cke_contents_html').style.display='none';
+	    switch(type){
+		case 'img':
+		    document.getElementById('img1').disabled=false;
+		    break;
+		case 'swf':
+		    document.getElementById('swf1').disabled=false;
+		    break;
+		case 'htm':
+		    document.getElementById('cke_contents_html').style.display='';
+		    break;
+	    }
+	}
+    </script>
+    <?php echo $this->form; ?>
+    <script type="text/javascript">//<![CDATA[
+	Calendar.setup({
+	    inputField : "date_from",
+	    trigger    : "date_from",
+	    onSelect   : function() { this.hide() },
+	    dateFormat : "%Y-%m-%d"
+	});
+	Calendar.setup({
+	    inputField : "date_to",
+	    trigger    : "date_to",
+	    onSelect   : function() { this.hide() },
+	    dateFormat : "%Y-%m-%d"
+	});
+	//]]>
+
+	CKEDITOR.replace("html",{
+	    skin:"v2",
+	    filebrowserImageUploadUrl : 'ckeditor/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images'
+	});
+	CKEDITOR.on('instanceReady',type_change);
+    </script>
+</div>

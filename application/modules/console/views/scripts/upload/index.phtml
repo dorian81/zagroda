@@ -1,0 +1,25 @@
+<div id="view-content">
+    <script type="text/javascript">
+        function cpy(text){
+	    window.prompt ("Skopiuj link:", text);
+	}
+	function del(file){
+	    if (confirm('Czy na pewno usunąć '+file+'?')){
+		document.location='/console/upload/del/?file='+file;
+	    }
+	}
+    </script>
+    <h3>Upload</h3>
+    <?php echo $this->form; ?>
+    <table border="1" cellspacing="0" cellpadding="2">
+        <tr><th>L.P.</th><th>Nazwa pliku</th><th>Akcje</th></tr>
+        <?php 
+	    $i=1;
+	    if (count($this->files)>0){
+		foreach ($this->files as $entry){
+		    echo '<tr><td>'.$i.'</td><td><a href="/upload/'.$entry.'" target="top">'.$entry.'</a></td><td><input type="button" value="Link" onclick="javascript:cpy(\'/upload/'.$entry.'\')"><input type="button" value="Usuń" onclick="javascript:del(\''.$entry.'\')"></td></tr>';
+		}
+	    }?>
+    </table>
+</div>
+</div>

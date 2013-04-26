@@ -109,7 +109,7 @@ class Console_StaticController extends Zend_Controller_Action
 			 );
 
 	    $staticObj->updateStatic($data,$id);
-	    header('Location: /console/index/list-static');
+	    header('Location: /console/static');
 	}else{
 	    $staticArr = $staticObj->getStatic($id);
 
@@ -144,7 +144,7 @@ class Console_StaticController extends Zend_Controller_Action
 			  'ordinal_no' => $ordinalNo
 			 );
 	    $staticObj->insertNew($data);
-	    header('Location: /console/index/list-static');
+	    header('Location: /console/static');
 	}else{
 	    $this->init();
 	    $this->form->setAction('/console/static/new?save=1')
@@ -160,31 +160,37 @@ class Console_StaticController extends Zend_Controller_Action
 	$data = array('active' => $active);
 	$staticObj = new Console_Model_DbTable_Static();
 	$staticObj->updateStatic($data,$id);
-	header('Location: /console/index/list-static/');
+	header('Location: /console/static/');
     }
 
     public function upAction()
     {
         $staticObj = new Console_Model_DbTable_Static();
 	$staticObj->up($this->getRequest()->getParam('id'), $this->getRequest()->getParam('ord'));
-	header('Location: /console/index/list-static/');
+	header('Location: /console/static/');
     }
 
     public function downAction()
     {
         $staticObj = new Console_Model_DbTable_Static();
 	$staticObj->down($this->getRequest()->getParam('id'), $this->getRequest()->getParam('ord'));
-	header('Location: /console/index/list-static/');
+	header('Location: /console/static/');
     }
 
     public function deleteAction()
     {
         $staticObj = new Console_Model_DbTable_Static();
 	$staticObj->del($this->getRequest()->getParam('id'));
-	header('Location: /console/index/list-static/');
+	header('Location: /console/static/');
     }
 
-
+    public function indexAction()
+    {
+	$staticObj = new Console_Model_DbTable_Static();
+	$staticArr = $staticObj->getAll();
+	$this->view->static = $staticArr;
+	$this->view->count = count($staticArr);
+    }
 }
 
 

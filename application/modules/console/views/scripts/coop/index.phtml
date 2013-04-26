@@ -1,0 +1,36 @@
+<br /><br />
+<div id="view-content">
+    <center>
+        <h3>Filtry</h3>
+        <form action="/console/index/coop/?filter=1" method="POST">
+	Aktywne:
+	<select name="active">
+	    <option value="1">Tak</option>
+	    <option value="0">Nie</option>
+	    <option value="all" selected="selected">Wszystkie</option>
+	</select><br>
+	Bloczek:
+	<select name="block">
+	    <option value="1">Tak</option>
+	    <option value="0">Nie</option>
+	    <option value="all" selected="selected">Wszystkie</option>
+	</select><br>
+	<input type="submit" value="Filtruj"><br>
+        </form>
+    <?php foreach ($this->letters as $letter): ?>
+        <a href="/console/index/coop/?filter=1&letter=<?php echo $letter.'">'.$letter; ?></a>&nbsp;
+    <?php endforeach; ?>
+    </center>
+    <a href="/console/coop/new" class="new">Nowy</a>
+    <table border="1" cellspacing="0" cellpadding="5">
+        <tr><th>Nazwa</th><th>Link</th><th>Aktywny</th><th>Grafika</th><th>Akcje</th></tr>
+    <?php foreach ($this->coop as $row):
+        echo '<tr><td>'.$row['name'].'</td><td><a href="'.$row['url'].'">'.$row['url'].'</a></td><td>';
+        echo ($row['active']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="/ico/no.png" class="mime">Nie';
+        echo '</td><td><img src="/banery/'.$row['img'].'" width="100"><td><a href="/console/coop/edit?id='.$row['id'].'"class="edit">Edytuj</a>&nbsp;';
+        echo ($row['active']==1)?'<a href="/console/coop/activate?active=0&id='.$row['id'].'" class="deactivate"> Dezaktywuj</a><br>':'<a href="/console/coop/activate?active=1&id='.$row['id'].'" class="activate"> Aktywuj</a><br>';
+        echo ($row['block']==1)?'<a href="/console/coop/block?block=0&id='.$row['id'].'" class="deactivate"> Wyłącz bloczek</a>&nbsp;':'<a href="/console/coop/block?block=1&id='.$row['id'].'" class="activate"> Bloczek</a>&nbsp;';
+        echo '<a href="/console/coop/logo/?id='.$row['id'].'" class="img_edit">Zmień logo</a></td></tr>';
+    endforeach; ?>
+    </table>
+</div>

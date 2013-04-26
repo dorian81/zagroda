@@ -20,6 +20,7 @@ class Console_CoopController extends Zend_Controller_Action
 
 	$name = $form->createElement('text','name');
 	$url = $form->createElement('text','url');
+	$file = $form->createElement('file','img');
 	$active = $form->createElement('radio','active');
 	$block = $form->createElement('radio','block');
 	$submit = $form->createElement('submit','Zapisz');
@@ -67,7 +68,6 @@ class Console_CoopController extends Zend_Controller_Action
 		    ),
 		    array(array('row'=>'HtmlTag'),array('tag'=>'tr'))
 		));
-	$file = new Zend_Form_Element_File('img');
 	$file->setLabel('Logo')
 	     ->setAttrib('size','50')
 	     ->setRequired(true)
@@ -77,9 +77,10 @@ class Console_CoopController extends Zend_Controller_Action
 		array(array('data'=>'HtmlTag'), array('tag' => 'td')),
 		array('Label', array('tag' => 'td')),
 		array(array('row'=>'HtmlTag'),array('tag'=>'tr'))
-	       ));
-	//     ->setDestination('/banery');
+	       ))
+	     ->setDestination('/var/www/zagroda/public/banery');
 
+	$form->setAttrib('enctype', 'multipart/form-data');
 	$form->addElements(array(
 		 $name,
 		 $url,
@@ -114,7 +115,7 @@ class Console_CoopController extends Zend_Controller_Action
 		);
 
 	    $coopObj->updateCoop($data,$id);
-	    header('Location: /console/index/coop');
+	    header('Location: /console/coop/');
 	}else{
 	    $coopArr = $coopObj->getcoop($id);
 
@@ -135,21 +136,116 @@ class Console_CoopController extends Zend_Controller_Action
     {
 	$save = $this->getRequest()->getParam('save');
 
+	$coopObj = new Console_Model_DbTable_Cooperants();
+
 	if (isset($save) && $save==1){
-	    $upload = new Zend_File_Transfer_Adapter_Http();
-	    $upload->setDestination(APPLICATION_PATH.'../banery');
-	    $upload->recieve();
-	    $this->view->file = $upload->getFileInfo();
+	    $this->form->getValues();
+
+	    $data = array(
+		'name' => $this->getRequest()->getPost('name'),
+		'url' => $this->getRequest()->getPost('url'),
+		'active' => $this->getRequest()->getPost('active'),
+		'block' => $this->getRequest()->getPost('block'),
+		'img' => $this->form->getValue('img')
+		);
+	    $coopObj->insertCoop($data);
+	    header('Location: /console/coop/');
 	}else{
 	    $form = $this->form;
-	    $form->getElement('img')->setDestination(APPLICATION_PATH.'/banery');
-	    
+	    $form->setAction('/console/coop/new?save=1')
+		 ->setMethod('POST');
 	    $this->view->form = $form;
 	}
     }
 
+    public function activateAction()
+    {
+	$id = $this->getRequest()->getParam('id');
+	$active = $this->getRequest()->getParam('active');
+	$data = array('active' => $active);
+	$staticObj = new Console_Model_DbTable_Cooperants();
+	$staticObj->updateCoop($data,$id);
+	header('Location: /console/coop/');
+    }
 
+    public function blockAction()
+    {
+	$id = $this->getRequest()->getParam('id');
+	$block = $this->getRequest()->getParam('block');
+	$data = array('block' => $block);
+	$staticObj = new Console_Model_DbTable_Cooperants();
+	$staticObj->updateCoop($data,$id);
+	header('Location: /console/coop/');
+    }
+
+    public function logoAction()
+    {
+        $id = $this->getRequest()->getParam('id');
+	$save = $this->getRequest()->getParam('save');
+
+	$coopObj = new Console_Model_DbTable_Cooperants();
+	$coopArr = $coopObj->getCoop($id);
+
+	if (isset($save) && $save = '1'){
+	    $img = $this->form->getValue('img');
+	    $data = array('img' => $img);
+	    if ($coopObj->updateCoop($data,$id)){
+		unlink('/var/www/zagroda/public/banery/'.$coopArr['img']);
+	    }
+	    header('Location: /console/coop/');
+	}else{
+	    $form = new Zend_Form;
+	    $file = $form->createElement('file','img')
+			 ->setRequired(true)
+			 ->setLabel('Logo')
+			 ->setAttrib('size','50');
+	    $submit = $form->createElement('submit','Zapisz');
+	    $form->addElements(array($file, $submit))
+		 ->setAction('/console/coop/logo/?save=1&id='.$id)
+		 ->setMethod('Post');
+	    $this->form = $form;
+	    $this->view->form = $this->form;
+	}
+    }
+
+    public function indexAction()
+    {
+	$coopObj = new Console_Model_DbTable_Cooperants();
+	$coopArr = $coopObj->getAll();
+
+	foreach ($coopArr as $coop){
+	    $tmp[] = strtoupper(substr($coop['name'],0,1));
+	}
+	$coopLetters = array_unique($tmp);
+	sort($coopLetters);
+	$this->view->letters = $coopLetters;
+
+	$filter = $this->getRequest()->getParam('filter');
+	if ($filter == 1){
+	    $block = $this->getRequest()->getPost('block');
+	    $active = $this->getRequest()->getPost('active');
+	    $letter = $this->getRequest()->getParam('letter');
+	    if(isset($block) && $block != 'all' && $active != 'all'){
+		$coopArr = $coopObj->getActiveBlock($active, $block);
+	    }else if (isset($block) && $block != 'all' && $active == 'all'){
+		$coopArr = $coopObj->getBlock($block);
+	    }else if (isset($block) && $active != 'all' && $block == 'all'){
+		$coopArr = $coopObj->getActive($active);
+	    }else if ($letter!=''){
+	    $coopArr = $coopObj->getLetter($letter);
+	    }
+	}
+	$this->view->coop = $coopArr;
+    }
 }
+
+
+
+
+
+
+
+
 
 
 

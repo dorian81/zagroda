@@ -1,0 +1,19 @@
+<br /><br />
+<div id="view-content">
+    <h3>Administratorzy</h3>
+    <a href="/console/admins/new/" class="new">Nowy</a>
+    <table border="1" cellspacing="0">
+        <tr><th>l.p.</th><th>Imię i nazwisko</th><th>Login</th><th>Aktywny</th><th>Akcje</th></tr>
+        <?php $i=1; foreach($this->admins as $row):
+            echo '<tr><td>'.$i.'</td><td>'.$row['imie'].' '.$row['nazwisko'].'</td><td>'.$row['login'].'</td><td>';
+            echo ($row['active']==1)?'<img src="/ico/ok.png" class="mime">Tak':'<img src="/ico/no.png" class="mime">Nie';
+            echo '</td><td>';
+            echo '<a href="/console/admins/edit/?id='.$row['id'].'" class="edit">Edytuj</a>&nbsp;';
+            echo '<a href="/console/admins/activate/?active=';
+            echo ($row['active']==1)?'0&id='.$row['id'].'" class="deactivate">Dezaktywuj':'1&id='.$row['id'].'" class="activate">Aktywuj';
+            echo '</a>&nbsp;';
+            echo '<a href="/console/admins/pwd?id='.$row['id'].'" class="pass">Zmiana hasła</a></td></tr>';
+            $i++;
+        endforeach;?>
+    </table>
+</div>

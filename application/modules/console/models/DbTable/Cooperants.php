@@ -39,5 +39,10 @@ class Console_Model_DbTable_Cooperants extends Zend_Db_Table_Abstract
 	$result = $this->update($data,'id = '.$id);
 	return $result;
     }
+
+    public function insertCoop($data){
+	$result = $this->insert($data);
+	return $result;
+    }
 }
 
