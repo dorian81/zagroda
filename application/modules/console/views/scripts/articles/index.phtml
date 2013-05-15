@@ -1,0 +1,30 @@
+<div id="view-content">
+    <h2> Numer <?php echo $this->issue; ?></h2>
+    <?php if (!isset($this->newIssue))
+	echo '<a href="/console/issues/" class="back">Wróć</a>';
+    else
+	echo '<a href="/console/news/?issue='.$this->issue.'&new=1"> Dalej </a>';
+    ?>
+     <a href="/console/articles/new/?issue=<?php echo $this->issue; ?>" class="new">Nowy artykuł</a><br/>
+    <table border="1" cellspacing="0" cellpadding="2">
+	<tr><th>L.P.</th><th>Tytuł</th><th>Strona</th><th>Podgląd strony</th><th>Akcje</th></tr>
+	<?php
+	    $i=1;
+	    foreach ($this->articles as $row){
+		$img='/issues/'.$this->issue.'/'.$row['page'];
+		$mini='/issues/'.$this->issue.'/m/'.$row['page'];
+		echo '<tr>
+			<td>'.$i.'</td>
+			<td>'.$row['title'].'</td>
+			<td>'.$row['page_count'].'</td>
+			<td><a href="'.$img.'" target="top"><img src="'.$mini.'"></a></td>
+			<td>
+			    <a class="edit" href="/console/articles/edit/?id='.$row['id'].'&issue='.$this->issue.'">Edytuj</a>
+			    <a href="/console/articles/delete/?id='.$row['id'].'&issue='.$this->issue.'" class="delete">Usuń</a>
+			</td>
+		      </tr>';
+	    $i++;
+	}
+	echo '</table>';
+	?>
+</div>

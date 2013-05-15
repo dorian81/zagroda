@@ -2,9 +2,6 @@
 
 class Console_IndexController extends Zend_Controller_Action
 {
-
-    private $session = null;
-
     public function init()
     {
 	$this->session = new Zend_Session_Namespace('index');

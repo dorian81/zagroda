@@ -100,9 +100,21 @@
               <actionMethod actionName="index"/>
               <actionMethod actionName="archive"/>
               <actionMethod actionName="activate"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="cover"/>
+              <actionMethod actionName="new"/>
             </controllerFile>
             <controllerFile controllerName="News">
               <actionMethod actionName="index"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="delete"/>
+            </controllerFile>
+            <controllerFile controllerName="Articles">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="edit"/>
+              <actionMethod actionName="page"/>
+              <actionMethod actionName="new"/>
+              <actionMethod actionName="delete"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
@@ -227,6 +239,36 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="News">
                 <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="News">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="News">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Issues">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Issues">
+                <viewScriptFile forActionName="cover"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Articles">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Articles">
+                <viewScriptFile forActionName="edit"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Articles">
+                <viewScriptFile forActionName="page"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Articles">
+                <viewScriptFile forActionName="new"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Articles">
+                <viewScriptFile forActionName="delete"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Issues">
+                <viewScriptFile forActionName="new"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
@@ -375,9 +417,21 @@
                 <testApplicationActionMethod forActionName="index"/>
                 <testApplicationActionMethod forActionName="archive"/>
                 <testApplicationActionMethod forActionName="activate"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="cover"/>
+                <testApplicationActionMethod forActionName="new"/>
               </testApplicationControllerFile>
               <testApplicationControllerFile forControllerName="News">
                 <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="delete"/>
+              </testApplicationControllerFile>
+              <testApplicationControllerFile forControllerName="Articles">
+                <testApplicationActionMethod forActionName="index"/>
+                <testApplicationActionMethod forActionName="edit"/>
+                <testApplicationActionMethod forActionName="page"/>
+                <testApplicationActionMethod forActionName="new"/>
+                <testApplicationActionMethod forActionName="delete"/>
               </testApplicationControllerFile>
             </testApplicationControllerDirectory>
           </testApplicationModuleDirectory>

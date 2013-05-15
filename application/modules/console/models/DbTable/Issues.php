@@ -20,5 +20,15 @@ class Console_Model_DbTable_Issues extends Zend_Db_Table_Abstract
 	$result = $this->update($data,'id = '.$id);
 	return $result;
     }
+
+    public function getIssue($id){
+	$result = $this->fetchRow('ordinal_no = '.$id);
+	return $result->toArray();
+    }
+
+    public function insertIssue($data){
+	$result = $this->insert($data);
+	return $result;
+    }
 }
 

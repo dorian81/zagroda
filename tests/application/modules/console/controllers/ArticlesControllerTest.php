@@ -1,6 +1,6 @@
 <?php
 
-class Console_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
+class Console_ArticlesControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 {
 
     public function setUp()
@@ -11,7 +11,7 @@ class Console_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testIndexAction()
     {
-        $params = array('action' => 'index', 'controller' => 'News', 'module' => 'console');
+        $params = array('action' => 'index', 'controller' => 'Articles', 'module' => 'console');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -28,7 +28,41 @@ class Console_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testEditAction()
     {
-        $params = array('action' => 'edit', 'controller' => 'News', 'module' => 'console');
+        $params = array('action' => 'edit', 'controller' => 'Articles', 'module' => 'console');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
+    public function testPageAction()
+    {
+        $params = array('action' => 'page', 'controller' => 'Articles', 'module' => 'console');
+        $urlParams = $this->urlizeOptions($params);
+        $url = $this->url($urlParams);
+        $this->dispatch($url);
+        
+        // assertions
+        $this->assertModule($urlParams['module']);
+        $this->assertController($urlParams['controller']);
+        $this->assertAction($urlParams['action']);
+        $this->assertQueryContentContains(
+            'div#view-content p',
+            'View script for controller <b>' . $params['controller'] . '</b> and script/action name <b>' . $params['action'] . '</b>'
+            );
+    }
+
+    public function testNewAction()
+    {
+        $params = array('action' => 'new', 'controller' => 'Articles', 'module' => 'console');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -45,7 +79,7 @@ class Console_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
     public function testDeleteAction()
     {
-        $params = array('action' => 'delete', 'controller' => 'News', 'module' => 'console');
+        $params = array('action' => 'delete', 'controller' => 'Articles', 'module' => 'console');
         $urlParams = $this->urlizeOptions($params);
         $url = $this->url($urlParams);
         $this->dispatch($url);
@@ -62,6 +96,10 @@ class Console_NewsControllerTest extends Zend_Test_PHPUnit_ControllerTestCase
 
 
 }
+
+
+
+
 
 
 

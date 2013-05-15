@@ -1,0 +1,7 @@
+<div id="view-content">
+	<a class="back" href="/console/articles/?issue=<?php echo $this->issue; ?>">Wróć</a>
+	<br>
+	<a href="/issues/<?php echo $this->issue.'/'.$this->page; ?>" target="blank"><img src="/issues/<?php echo $this->issue.'/m/'.$this->page; ?>"></a>
+	<a href="/console/articles/page/?id=<?php echo $this->id; ?>&issue=<?php echo $this->issue; ?>">Zmień</a>
+	<?php echo $this->form; ?>
+</div>
