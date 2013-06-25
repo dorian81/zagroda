@@ -14,11 +14,6 @@ class Application_Model_DbTable_Issues extends Zend_Db_Table_Abstract
 	return $row->toArray();
     }
 
-    public function getAll(){
-	$row = $this->fetchAll();
-	return $row->toArray();
-    }
-
     public function getArchival(){
 	$result = $this->fetchAll('active = 1 AND archive = 1','ordinal_no DESC');
 	return $result->toArray();

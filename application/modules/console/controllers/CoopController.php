@@ -225,7 +225,7 @@ class Console_CoopController extends Zend_Controller_Action
 	    $block = $this->getRequest()->getPost('block');
 	    $active = $this->getRequest()->getPost('active');
 	    $letter = $this->getRequest()->getParam('letter');
-	    if(isset($block) && $block != 'all' && $active != 'all'){
+	    if(isset($block) && ($block != 'all' && $active != 'all')){
 		$coopArr = $coopObj->getActiveBlock($active, $block);
 	    }else if (isset($block) && $block != 'all' && $active == 'all'){
 		$coopArr = $coopObj->getBlock($block);
